@@ -5,13 +5,15 @@ import About from './Components/About';
 import Projects from './Components/Projects';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
+import Header from './Components/Header';
 
 
 export default function App() {
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<SignIn />} />
