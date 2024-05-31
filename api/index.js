@@ -15,8 +15,15 @@ mongoose.connect(process.env.MONGO).then(() =>{console.log("connected")})
 //     res.json({message:'API is working!'})
 // })
 
-app.use('/user/api',userRouter)
-app.use('/user/auth',authRouter)
+app.use('/user/api',userRouter);
+app.use('/user/auth',authRouter);
+app.use((err,req,res,next)=>{
+    const statuscode = err.statuscode || 500;
+    const message = err.message || "Internal server error";
+    res.status(statuscode).json({
+        statuscode:statuscode,
+        message:message});
+});
 
 app.listen('3000',()=>{
     console.log("Server is running on port 3000");
