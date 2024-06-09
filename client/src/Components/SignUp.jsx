@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
-  useNavigate
+  
   const [formdata, setFormData] = useState({});
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false)
