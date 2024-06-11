@@ -1,5 +1,4 @@
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
-import { set } from 'mongoose';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signinFailure,signinStart,signinSuccess } from '../redux/user/userSlice';
@@ -12,7 +11,7 @@ function SignIn() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formdata, [e.target.id]: e.target.value.trim() })
+    setFormData({...formdata, [e.target.id]: e.target.value.trim() })
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,16 +28,19 @@ function SignIn() {
         }
       );
       const data = await res.json();
-      if(data.success===false) dispatch(signinFailure("failed"))
+      console.log(data)
       if(res.ok){
         dispatch(signinSuccess(data));
         setTimeout(() => {
           navigate('/')
         }, 1000);
       }
+      else{
+        dispatch(signinFailure(data.message))
+      }
     } catch (error) {
-      console.log(error)
-      dispatch(signinFailure(error.message))
+      console.error(error)
+      
     }
   };
  
