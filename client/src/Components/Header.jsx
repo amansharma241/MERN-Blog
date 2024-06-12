@@ -4,11 +4,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from 'react-icons/fa'
 import SignIn from './SignIn';
-import { useSelector } from 'react-redux';
-
+import { useSelector,useDispatch } from 'react-redux';
+import { toggletheme } from '../redux/theme/themeSlice';
 
 function Header() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch()
   const { currentUser } = useSelector(state => state.user);
   return (
     <Navbar className='border-b-2'>
@@ -30,12 +31,12 @@ function Header() {
         <AiOutlineSearch />
       </Button>
       <div className='flex gap-2 md:order-2 '>
-        <Button color='gray' className='w-12 h-10 hover:shadow-lg hidden sm:inline ' pill>
+        <Button color='gray' className='w-12 h-10 hover:shadow-lg sm:inline ' pill onClick={()=>dispatch(toggletheme())}>
           <FaMoon />
         </Button>
         {currentUser ? (
           <Dropdown arrowIcon={false} inline label={
-            <Avatar img={currentUser.profilePicture} rounded/>
+            <Avatar img={currentUser.profilePicture} rounded />
           } >
             <Dropdown.Header>
               <span className='block text-sm'>@{currentUser.username}</span>
@@ -50,28 +51,26 @@ function Header() {
               </Link>
             </Dropdown.Item>
           </Dropdown>
-        ):
-          <Link to = "/signin">
-        <Button color = 'gray' className = 'hover:shadow-lg' pill>
-          SignIn
-        </Button>
-    </Link>
+        ) :
+          <Link to="/signin">
+            <Button color='gray' className='hover:shadow-lg' pill>
+              SignIn
+            </Button>
+          </Link>
         }
-
-<Navbar.Toggle />
-        </div >
-
-  <Navbar.Collapse >
-    <Navbar.Link active={path === '/'}>
-      <Link to='/'>Home</Link>
-    </Navbar.Link>
-    <Navbar.Link active={path === '/projects'}>
-      <Link to='/projects'>Projects</Link>
-    </Navbar.Link>
-    <Navbar.Link active={path === '/about'}>
-      <Link to='/about'>About</Link>
-    </Navbar.Link>
-  </Navbar.Collapse>
+        <Navbar.Toggle />
+      </div >
+      <Navbar.Collapse >
+        <Navbar.Link active={path === '/'}>
+          <Link to='/'>Home</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === '/projects'}>
+          <Link to='/projects'>Projects</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === '/about'}>
+          <Link to='/about'>About</Link>
+        </Navbar.Link>
+      </Navbar.Collapse>
     </Navbar >
   )
 }
