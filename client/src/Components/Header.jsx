@@ -1,16 +1,22 @@
 import React from 'react';
 import { Button, Breadcrumb, Navbar, TextInput, Dropdown, Avatar } from 'flowbite-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from 'react-icons/fa'
 import SignIn from './SignIn';
 import { useSelector,useDispatch } from 'react-redux';
 import { toggletheme } from '../redux/theme/themeSlice';
+import {signOut} from '../redux/user/userSlice'
 
 function Header() {
   const path = useLocation().pathname;
   const dispatch = useDispatch()
   const { currentUser } = useSelector(state => state.user);
+  const navigate = useNavigate()
+  const handleSignOut = () =>{
+    dispatch(signOut());
+    navigate('/signin')
+  }
   return (
     <Navbar className='border-b-2'>
       <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
@@ -46,7 +52,7 @@ function Header() {
               <Link to={'/dashboard?tab=profile'}> Profile
               </Link>
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item onClick={handleSignOut} >
               <Link to={'/dashboard?tab=profile'}> SignOut
               </Link>
             </Dropdown.Item>
