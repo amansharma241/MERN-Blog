@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/signup" element={<SignUp/>} />
       </Routes>
-      {/* <FooterComp/> */}
+      <FooterComp/>
     </BrowserRouter>
   )
 }
