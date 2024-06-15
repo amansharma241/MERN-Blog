@@ -17,8 +17,8 @@ const DashProfile = () => {
             <Button type='submit' gradientDuoTone='purpleToBlue' outline>Update</Button>
         </form>
         <div className ='text-red-500 flex justify-between mt-3'>
-            <span>Delete Account</span>
-            <span>Signout</span>
+            <span onClick={()=>{console.log("hello")}} className='cursor-pointer hover:underline'>Delete Account</span>
+            <span className='cursor-pointer hover:underline'>Signout</span>
         </div>
     </div>
   )

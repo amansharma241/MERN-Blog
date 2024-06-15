@@ -4,14 +4,15 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
-
+import cookieParser from 'cookie-parser';
 
 dotenv.config()
 const app = express();
 app.use(cors({
     origin:"http://localhost:5173",
 }))
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser())
 mongoose.connect(process.env.MONGO).then(() =>{console.log("connected")})
 
 
