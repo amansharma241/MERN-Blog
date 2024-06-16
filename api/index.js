@@ -15,11 +15,6 @@ app.use(express.json());
 app.use(cookieParser())
 mongoose.connect(process.env.MONGO).then(() =>{console.log("connected")})
 
-
-// app.get('/test',(req,res)=>{
-//     res.json({message:'API is working!'})
-// })
-
 app.use('/user/api',userRouter);
 app.use('/user/auth',authRouter);
 app.use((err,req,res,next)=>{
