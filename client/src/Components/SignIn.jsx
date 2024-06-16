@@ -25,8 +25,10 @@ function SignIn() {
         {
           method: 'POST',
           headers: { 'Content-type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify(formdata)
-        }
+        },
+        
       );
       const data = await res.json();
       

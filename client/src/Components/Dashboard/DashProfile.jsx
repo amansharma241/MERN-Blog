@@ -21,7 +21,7 @@ const DashProfile = () => {
         headers: {
           'Content-Type' : "application/json",
         },
-        withCredentials: true,
+        credentials: 'include',
         body: JSON.stringify(formData)
       })
       const data = await res.json();
@@ -37,6 +37,7 @@ const DashProfile = () => {
       dispatch(deleteUserStart());
       const res = await fetch(`http://localhost:3000/user/api/delete/${currentUser._id}`, {
         method: 'DELETE',
+        credentials: 'include',
       });
       const data = await res.json();
       if (!res.ok) {
