@@ -6,7 +6,7 @@ import { FaMoon } from 'react-icons/fa'
 import SignIn from './SignIn';
 import { useSelector,useDispatch } from 'react-redux';
 import { toggletheme } from '../redux/theme/themeSlice';
-import {signOut} from '../redux/user/userSlice'
+import {signOutSuccess} from '../redux/user/userSlice'
 
 function Header() {
   const path = useLocation().pathname;
@@ -14,8 +14,7 @@ function Header() {
   const { currentUser } = useSelector(state => state.user);
   const navigate = useNavigate()
   const handleSignOut = () =>{
-    dispatch(signOut());
-    navigate('/signin')
+    
   }
   return (
     <Navbar className='border-b-2'>
