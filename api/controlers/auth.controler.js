@@ -48,16 +48,14 @@ export const signin = async (req, res, next) => {
 
 export const google = async (req, res, next) => {
     const { email, name, googlePhotoUrl } = req.body;
-    console.log(req)
     try {
         const user = await User.findOne({ email });
         if (user) {
-            const token = jwt.sign({ id: user._id, isAdmin: validUser.isAdmin }, 'aman');
+            const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, 'aman');
             const { password, ...rest } = user._doc
             res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);
         }
         else {
-            console.log(name)
             const generatedPassword = 'aman';
             const hashedpassword = bcryptjs.hashSync(generatedPassword, 10)
             const newUser = new User({

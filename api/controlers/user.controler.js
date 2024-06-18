@@ -8,6 +8,8 @@ export const test = (req,res) => {
 
 export const updateUser = async (req, res, next) => {
    if(req.user.id !== req.params.userId){
+    console.log("req.user.id - " + req.user.id);
+    console.log("req.params.userId - " + req.params.userId);
     return next(errorhandler(401, "Unauthorized"));
    }
    console.log(req.body);
