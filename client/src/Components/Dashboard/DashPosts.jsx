@@ -51,6 +51,7 @@ const DashPosts = () => {
         `http://localhost:3000/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
+          credentials: 'include',
         }
       );
       const data = await res.json();
