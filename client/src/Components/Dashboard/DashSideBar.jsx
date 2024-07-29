@@ -36,6 +36,13 @@ const DashSideBar = () => {
                    </Sidebar.Item>
                  </Link>
               )}
+              {currentUser.isAdmin && (
+                 <Link to='/dashboard?tab=dash'>
+                 <Sidebar.Item active={tab==='users'} icon={HiDocumentText}  labelColor='dark' className='cursor-pointer' >
+                   Analytics
+                   </Sidebar.Item>
+                 </Link>
+              )}
               <Sidebar.Item  icon = {HiArrowSmRight} className='cursor-pointer'>
                 Sign-Out
               </Sidebar.Item>
